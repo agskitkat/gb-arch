@@ -26,11 +26,24 @@ class Product
      * @param string $name
      * @param float $price
      */
-    public function __construct(int $id, string $name, float $price)
+    public function __construct(int $id = 0, string $name = "Пустой товар", float $price = 0.0)
     {
         $this->id = $id;
         $this->name = $name;
         $this->price = $price;
+    }
+
+    /**
+     * Создаём магический метод для назначени приватных свойств
+     * Ксати, считается ли это антипеттерном ?
+     * Вроде же мы прячем свойства, а тут преназначаем.
+     * Хотя...
+     */
+    public function __set ($name, $value) {
+        /**
+         * Хоят логику назначения переменных можно и тут переопределить
+         */
+        $this->$name = $value;
     }
 
     /**

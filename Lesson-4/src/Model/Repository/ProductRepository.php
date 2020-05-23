@@ -24,13 +24,21 @@ class ProductRepository
             return [];
         }
 
+        // Создаём пустышку
+        $product = new Product();
+
         $productList = [];
         foreach ($this->getDataFromSource(['id' => $ids]) as $item) {
-            $productList[] = new Product(
-                $item['id'],
-                $item['name'],
-                $item['price']
-            );
+
+            // Клонируем пустышку
+            $cloneProduct = clone $product;
+
+            // Назначаем свойства
+            $cloneProduct->id =  $item['id'];
+            $cloneProduct->name =  $item['name'];
+            $cloneProduct->price =  $item['price'];
+
+            $productList[] = $cloneProduct;
         }
 
         return $productList;
@@ -42,13 +50,17 @@ class ProductRepository
      */
     public function fetchAll(): array
     {
+        $product = new Product();
+
         $productList = [];
         foreach ($this->getDataFromSource() as $item) {
-            $productList[] = new Product(
-                $item['id'],
-                $item['name'],
-                $item['price']
-            );
+            $cloneProduct = clone $product;
+
+            $cloneProduct->id =  $item['id'];
+            $cloneProduct->name =  $item['name'];
+            $cloneProduct->price =  $item['price'];
+
+            $productList[] = $cloneProduct;
         }
 
         return $productList;
