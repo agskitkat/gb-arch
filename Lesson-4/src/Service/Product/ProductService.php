@@ -38,6 +38,7 @@ class ProductService
     }
 
     /**
+     * Фабричный метод найден тут
      * Фабричный метод для репозитория Product
      * @return ProductRepository
      */

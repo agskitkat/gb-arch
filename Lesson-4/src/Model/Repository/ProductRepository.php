@@ -6,6 +6,11 @@ namespace Model\Repository;
 
 use Model\Entity\Product;
 
+/**
+ *  Паттерн фабричный метод применён для класса ProductRepository.
+ *  Смею предположить, что в данном случае паттерн исрользуется
+ *  для возможности добавить источники продуктов.
+ */
 class ProductRepository
 {
     /**
