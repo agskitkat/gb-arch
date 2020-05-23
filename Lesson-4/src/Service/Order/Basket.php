@@ -124,20 +124,28 @@ class Basket
         BillingInterface $billing,
         SecurityInterface $security,
         CommunicationInterface $communication
-    ): void {
-        $totalPrice = 0;
-        foreach ($this->getProductsInfo() as $product) {
-            $totalPrice += $product->getPrice();
-        }
+    ): void
+    {
 
-        $discount = $discount->getDiscount();
-        $totalPrice = $totalPrice - $totalPrice / 100 * $discount;
+        $order = new Order();
 
-        $billing->pay($totalPrice);
-
-        $user = $security->getUser();
-        $communication->process($user, 'checkout_template');
+        // Вариант 1 использования паттерна строитель
+        $order->setProducts($this->getProductsInfo());
+        $order->setDiscount($discount);
+        $order->setBilling($billing);
+        $order->setSecurity($security);
+        $order->setCommunication($communication);
+        $order->process();
+ 
+        // Вариант 2 использования паттерна строитель
+        (new Order())->setProducts($this->getProductsInfo())
+            ->setDiscount($discount)
+            ->setBilling($billing)
+            ->setSecurity($security)
+            ->setCommunication($communication)
+            ->process();
     }
+
 
     /**
      * Фабричный метод найден тут
