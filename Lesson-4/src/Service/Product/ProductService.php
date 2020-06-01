@@ -32,9 +32,18 @@ class ProductService
 
         // Применить паттерн Стратегия
         // $sortType === 'price'; // Сортировка по цене
-        // $sortType === 'name'; // Сортировка по имени
+        // $sortType === 'name';  // Сортировка по имени
 
-        return $productList;
+        // В зависимоти от переменной $sortType, выполняем стратегию сортировки
+        switch($sortType) {
+            case 'price':
+                $context = new SortProductsContext(new SortByPrice());
+                break;
+            default:
+                $context = new SortProductsContext(new SortByName());
+        }
+
+        return $context->doSort($productList);
     }
 
     /**
