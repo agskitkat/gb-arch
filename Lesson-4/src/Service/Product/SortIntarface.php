@@ -10,7 +10,7 @@ interface SortIntarface
 {
     /**
      * Метод интерфейса, отвечающий за получение результата сортировки
-     * 
+     *
      * @param array $productList
      * @return Product[]
      */
