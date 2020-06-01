@@ -10,6 +10,13 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 
+/**
+ * Сначало мне показалось, что это Шаблонный метод.
+ * НО! Его наследники не реализуют "шаги".
+ *
+ * Class BaseController
+ * @package Framework
+ */
 abstract class BaseController
 {
     /**

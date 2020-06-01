@@ -22,6 +22,7 @@ class VipDiscount implements DiscountInterface
     }
 
     /**
+     * Этот конкретный класс реализует интерфейс шаблона с единственным методом
      * @inheritdoc
      */
     public function getDiscount(): float
